@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="game">
+        <div id="menu">
+            <button id="throwDices">Lancer les dés 🎲</button>
+            <button id="throwAgain" class="hidden">Relancer 🎲</button>
+        </div>
+        <div id="dices"></div>
+        <div id="combo"></div>
+        <div class="center">
+            <form method="post" action="/getGain">
+                <input type="hidden" id="gainNumber" name="gain" value="3">
+                <button id="getGain" class="hidden">Récupérer mon gain</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script src="./js/game.js"></script>
+</html>
+
+<style>
+    body {
+        height: 100%;
+    }
+    .lime-bg {
+        background-color: lime;
+    }
+    #game {
+        width: 600px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    #menu {
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    #combo {
+        margin: auto;
+        font-size: 30px;
+    }
+    button {
+        width: 250px;
+        height: 50px;
+        font-size: 25px;
+    }
+    .hidden {
+        display: none;
+    }
+    .invisible {
+        opacity: 0;
+    }
+    #dices {
+        color: red;
+        width: 500px;
+        margin: auto;
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+    }
+    .face {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border: 2px solid black;
+        line-height: 50px;
+        font-size: 20px;
+        font-weight: bold;
+        color: blue;
+        text-align: center;
+        cursor: pointer;
+    }
+    .dice {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+        font-size: 30px;
+        background-color: blue;
+        color: wheat;
+        position: relative;
+    }
+    .selected {
+        background-color: lime;
+        color: black;
+    }
+    .dice:hover {
+        cursor: pointer;
+    }
+    .center {
+        margin: auto;
+        margin-top: 50px;
+    }
+</style>

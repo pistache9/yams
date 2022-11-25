@@ -1,0 +1,23 @@
+extends layouts/frontend
+
+block content
+    .ui.middle.aligned.center.aligned.grid
+        .six.wide.column
+            - let email
+            if user
+                - email = user.email
+            if errors
+                each error in errors
+                    <div style="color:red; font-weight: bolder; margin:5px;">#{error}</div>
+            form.ui.large.form(method="post", action="/login")
+                .ui.stacked.segment
+                    +field('email', 'email', 'your.email@address.tld', email)
+                    +field('password', 'password', 'Password', '')
+                    button(type="submit").ui.fluid.large.teal.submit.button Login
+                .ui.error.message
+
+mixin field(type, name, placeholder, value)
+    .field
+        .ui.left.icon.input
+            i.icon(class=(type === 'password' ? 'lock' : 'user'))
+            input(type=type, name=name, placeholder=placeholder, value=value)

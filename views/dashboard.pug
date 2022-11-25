@@ -1,0 +1,21 @@
+extends layouts/frontend
+
+block content
+    .ui.middle.aligned.center.aligned.grid
+        .six.wide.column
+            h1 MON PROFIL
+            p Pseudo : #{user.lastName}
+            p Email : #{user.email}
+            p Pâtisseries - #{user.pastries.length} :
+                div(class="flexbox")
+                    each pastry in user.pastries
+                        div(class="pastry") #{pastry.name} (gagné le #{new Date(pastry.date).toISOString().split('T')[0]})
+            form(method="post", action="/game")
+                button(type="submit") Jouer
+
+
+mixin field(type, name, placeholder)
+    .field
+        .ui.left.icon.input
+            i.icon(class=(type === 'password' ? 'lock' : 'user'))
+            input(type=type, name=name, placeholder=placeholder)

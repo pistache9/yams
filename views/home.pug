@@ -1,0 +1,30 @@
+extends layouts/frontend
+
+block content
+    .ui.middle.aligned.center.aligned.grid
+        .six.wide.column
+            - let firstName
+            - let lastName
+            - let email
+            if userData
+                - firstName = userData.firstName
+                - lastName = userData.lastName
+                - email = userData.email
+            if errors
+                each error in errors
+                    <div style="color:red; font-weight: bolder; margin:5px;">#{error}</div>
+            form.ui.large.form(method="post", action="/")
+                .ui.stacked.segment
+                    +field('text', 'firstName', 'First name', firstName)
+                    +field('text', 'lastName', 'Last name', lastName)
+                    +field('email', 'email', 'your.email@address.tld', email)
+                    +field('password', 'password', 'Password', '')
+                    +field('password', 'password_confirm', 'Confirm password', null)
+                    button(type="submit").ui.fluid.large.teal.submit.button Login
+                .ui.error.message
+
+mixin field(type, name, placeholder, value)
+    .field
+        .ui.left.icon.input
+            i.icon(class=(type === 'password' ? 'lock' : 'user'))
+            input(type=type, name=name, placeholder=placeholder, value=value)
